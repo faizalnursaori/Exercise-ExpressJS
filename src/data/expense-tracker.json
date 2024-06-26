@@ -51,7 +51,7 @@
     "id": 9,
     "title": "Pay Day",
     "nominal": 1500000,
-    "type": "expense",
+    "type": "income",
     "category": "salary",
     "date": "2024-06-25"
   },
