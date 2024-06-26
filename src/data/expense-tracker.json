@@ -1,0 +1,66 @@
+[
+  {
+    "id": 2,
+    "title": "Buy Edam",
+    "nominal": 150000,
+    "type": "expense",
+    "category": "food",
+    "date": "2024-06-25"
+  },
+  {
+    "id": 3,
+    "title": "Paying for Bhisa",
+    "nominal": 150000,
+    "type": "expense",
+    "category": "transport",
+    "date": "2023-01-01"
+  },
+  {
+    "id": 5,
+    "title": "Food",
+    "nominal": 150000,
+    "type": "expense",
+    "category": "food",
+    "date": "2023-01-02"
+  },
+  {
+    "id": 6,
+    "title": "Buy some food for lunch",
+    "nominal": 200000,
+    "type": "expense",
+    "category": "food",
+    "date": "2024-06-25"
+  },
+  {
+    "id": 7,
+    "title": "Pay for Woosh",
+    "nominal": 150000,
+    "type": "expense",
+    "category": "transportation",
+    "date": "2024-06-25"
+  },
+  {
+    "id": 8,
+    "title": "Dinner at Solaria",
+    "nominal": 150000,
+    "type": "expense",
+    "category": "food",
+    "date": "2024-06-25"
+  },
+  {
+    "id": 9,
+    "title": "Pay Day",
+    "nominal": 1500000,
+    "type": "expense",
+    "category": "salary",
+    "date": "2024-06-25"
+  },
+  {
+    "id": 10,
+    "title": "Pay for bajaj",
+    "nominal": 20000,
+    "type": "expense",
+    "category": "transport",
+    "date": "2024-06-26"
+  }
+]
