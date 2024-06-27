@@ -1,18 +1,18 @@
-import { Request, Response } from "express";
+import { Request, Response, NextFunction } from "express";
 import getExpenseData from "../utils/expensesFilePath.js";
 import expensesWriteFile from "../utils/expensesWriteFile.js";
 
-export async function getExpenses(req: Request, res: Response) {
+export async function getExpenses(req: Request, res: Response, next: NextFunction) {
   try {
     const allExpenses = await getExpenseData();
 
     res.status(200).json({ message: "Success gett all expenses!", allExpenses });
   } catch (error) {
-    res.status(500).json({ message: "Internal server error!" });
+    next(error);
   }
 }
 
-export async function getExpensesByDate(req: Request, res: Response) {
+export async function getExpensesByDate(req: Request, res: Response, next: NextFunction) {
   try {
     const { startDate, endDate } = req.query;
 
@@ -41,11 +41,11 @@ export async function getExpensesByDate(req: Request, res: Response) {
       endDate,
     });
   } catch (error) {
-    res.status(500).json({ message: "Internal server error" });
+    next(error);
   }
 }
 
-export async function getExpensesByCategory(req: Request, res: Response) {
+export async function getExpensesByCategory(req: Request, res: Response, next: NextFunction) {
   const {
     params: { category },
   } = req;
@@ -77,11 +77,11 @@ export async function getExpensesByCategory(req: Request, res: Response) {
       expenses: filteredExpenses,
     });
   } catch (error) {
-    res.status(500).json({ message: "Internal server error" });
+    next(error);
   }
 }
 
-export async function getExpenseDetail(req: Request, res: Response) {
+export async function getExpenseDetail(req: Request, res: Response, next: NextFunction) {
   try {
     const allExpenses = await getExpenseData();
     const expense = allExpenses.find((exp: { id: number }) => exp.id === Number(req.params.id));
@@ -96,7 +96,7 @@ export async function getExpenseDetail(req: Request, res: Response) {
   }
 }
 
-export async function createExpense(req: Request, res: Response) {
+export async function createExpense(req: Request, res: Response, next: NextFunction) {
   try {
     const allExpenses = await getExpenseData();
     const { title, nominal, type, category, date } = req.body;
@@ -121,11 +121,11 @@ export async function createExpense(req: Request, res: Response) {
     await expensesWriteFile(allExpenses);
     res.status(201).json({ message: "Expense added successfully", newExpenses });
   } catch (error) {
-    res.status(500).json({ message: "Internal server error" });
+    next(error);
   }
 }
 
-export async function editExpense(req: Request, res: Response) {
+export async function editExpense(req: Request, res: Response, next: NextFunction) {
   try {
     const allExpenses = await getExpenseData();
     const expenseIndex = allExpenses.findIndex(
@@ -143,11 +143,11 @@ export async function editExpense(req: Request, res: Response) {
     await expensesWriteFile(allExpenses);
     res.status(200).json({ message: "Expense updated successfully", updatedExpense });
   } catch (error) {
-    res.status(500).json({ message: "Internal server error" });
+    next(error);
   }
 }
 
-export async function deleteExpense(req: Request, res: Response) {
+export async function deleteExpense(req: Request, res: Response, next: NextFunction) {
   try {
     const allExpenses = await getExpenseData();
     const expenseIndex = allExpenses.findIndex(
